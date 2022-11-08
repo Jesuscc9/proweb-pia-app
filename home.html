@@ -13,7 +13,11 @@
       id="posts-container"
     ></div>
 
-    <form class="mt-10 flex flex-col gap-10 text-white">
+    <form
+      class="mt-10 flex flex-col gap-10 text-white"
+      data-controller="form"
+      data-form-url-value="/posts/index.php"
+    >
       <input
         type="text"
         title="post title"
@@ -21,8 +25,9 @@
         class="p-4 rounded-md text-black"
       />
       <input type="hidden" value="1" name="created_by" />
-      <p class="form-error text-red-500 hidden"></p>
+      <p class="text-red-500 hidden" data-form-target="error"></p>
       <button
+        data-form-target="button"
         type="submit"
         class="bg-blue-500 w-min whitespace-nowrap px-4 py-2 rounded-md m-auto"
       >
@@ -30,6 +35,7 @@
       </button>
     </form>
 
+    <script type="module" src="src/js/main.js"></script>
     <script type="module" src="src/js/posts.js"></script>
   </body>
 </html>
