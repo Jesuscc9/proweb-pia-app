@@ -10,8 +10,17 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "postcss": "^8.4.18",
+    "prettier": "2.7.1",
     "tailwindcss": "^3.2.2",
     "vite": "^3.2.3"
+  },
+  "dependencies": {
+    "standard": "^17.0.0"
+  },
+  "eslintConfig": {
+    "extends": ["./node_modules/standard/eslintrc.json", "prettier"]
   }
 }
