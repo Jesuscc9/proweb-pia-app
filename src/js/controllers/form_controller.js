@@ -52,6 +52,8 @@ const fetchPosts = async () => {
 
   $posts.innerHTML = 'No posts found'
 
+  posts.reverse()
+
   if (posts?.length > 0) {
     $posts.innerHTML = ''
     posts.forEach((post) => {
@@ -61,7 +63,7 @@ const fetchPosts = async () => {
       $posts.innerHTML =
         $posts.innerHTML +
         `
-        <div>
+        <div class='border p-4 w-full'>
           <p class='text-red-500'>${post.body}</p>
           <p class='text-white'>${post.created_at}</p>
         </div>
