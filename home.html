@@ -7,17 +7,22 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div class="flex w-full justify-around">
+    <div class="flex w-full justify-around mt-8">
       <div
         class="border text-white p-10 flex flex-col gap-2"
         style="width: 500px"
-        id="posts-container"
-      ></div>
+        data-controller="posts"
+        id="posts"
+      >
+        <button id="refresh" data-action="click->posts#refresh">refresh</button>
+        <div data-posts-target="container" class="flex flex-col gap-2"></div>
+      </div>
 
       <form
         class="mt-10 flex flex-col gap-10 text-white h-min"
         data-controller="form"
         data-form-url-value="/posts/index.php"
+        data-form-renderer-value="#posts"
       >
         <input
           type="text"

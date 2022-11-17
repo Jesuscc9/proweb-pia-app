@@ -8,7 +8,12 @@
   </head>
   <body>
     <div class="h-screen w-screen grid place-items-center">
-      <form class="border-gray-200 border rounded-md p-10">
+      <form
+        class="border-gray-200 border rounded-md p-10"
+        data-controller="form"
+        data-form-url-value="/auth/login.php"
+        data-form-redirect-value="home.html"
+      >
         <div class="mb-6">
           <label
             for="username"
@@ -38,16 +43,18 @@
             required
           />
         </div>
-        <p class="text-red-500 form-error hidden"></p>
+        <p class="text-red-500 form-error hidden" data-form-target="error"></p>
 
         <button
           type="submit"
+          data-form-target="button"
           class="text-white mt-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Submit
         </button>
       </form>
+      <div id="posts-container"></div>
     </div>
-    <script type="module" src="src/js/login.js"></script>
+    <script type="module" src="src/js/main.js"></script>
   </body>
 </html>

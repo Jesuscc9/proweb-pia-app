@@ -7,11 +7,11 @@ export default class extends Controller {
 
   static values = {
     url: String,
+    redirect: String,
+    renderer: String,
   }
 
   connect() {
-    fetchPosts()
-
     this.element.addEventListener('submit', async (evt) => {
       evt.preventDefault()
 
@@ -27,47 +27,26 @@ export default class extends Controller {
 
       try {
         await axios.post(URL, values)
-        this.element.reset()
-        fetchPosts()
-      } catch (e) {
-        console.error({ e })
+        if (this?.redirectValue) {
+          window.location.href = 'home.html'
+        }
 
+        if (this?.rendererValue) {
+          const refreshButton = document.querySelector(this.rendererValue)
+
+          const button = refreshButton.querySelector('#refresh')
+
+          button.click()
+        }
+
+        this.element.reset()
+      } catch (e) {
         this.errorTarget.textContent =
           e?.response?.data?.message ?? 'Error procesando esa peticion.'
         this.errorTarget.classList.remove('hidden')
       } finally {
         this.buttonTarget.textContent = prevButtonText
       }
-    })
-  }
-}
-
-const fetchPosts = async () => {
-  const $posts = document.querySelector('#posts-container')
-  const res = await axios.get(`${BASE_URL}/posts/index.php`)
-
-  const posts = res.data.data
-
-  console.log({ res })
-
-  $posts.innerHTML = 'No posts found'
-
-  posts.reverse()
-
-  if (posts?.length > 0) {
-    $posts.innerHTML = ''
-    posts.forEach((post) => {
-      console.log({ post })
-      console.log(new Date(post.created_at))
-
-      $posts.innerHTML =
-        $posts.innerHTML +
-        `
-        <div class='border p-4 w-full'>
-          <p class='text-red-500'>${post.body}</p>
-          <p class='text-white'>${post.created_at}</p>
-        </div>
-      `
     })
   }
 }
