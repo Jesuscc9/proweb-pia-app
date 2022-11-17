@@ -7,7 +7,9 @@ export default class extends Controller {
 
   async fetchData() {
     const $posts = this.containerTarget
+    this.refreshButtonTarget.disabled = true
 
+    await new Promise((resolve, reject) => setTimeout(resolve, 300))
     const res = await axios.get(`${BASE_URL}/posts/index.php`)
 
     const posts = res.data.data
@@ -38,17 +40,18 @@ export default class extends Controller {
         $posts.querySelectorAll('div').forEach((div, i) => {
           const eraseButton = div.querySelector('button')
 
-          eraseButton.addEventListener('click', async () => {
+          eraseButton?.addEventListener('click', async () => {
             await axios.delete(`${BASE_URL}/posts/index.php?id=${posts[i].id}`)
             this.refresh()
           })
         })
       })
     }
+    this.refreshButtonTarget.disabled = false
   }
 
-  refresh() {
-    this.fetchData()
+  async refresh() {
+    await this.fetchData()
   }
 
   connect() {

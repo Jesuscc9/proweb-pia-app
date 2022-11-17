@@ -14,7 +14,14 @@
         data-controller="posts"
         id="posts"
       >
-        <button id="refresh" data-action="click->posts#refresh">refresh</button>
+        <button
+          id="refresh"
+          data-action="click->posts#refresh"
+          data-posts-target="refreshButton"
+          class="bg-blue-500 py-2 px-2 rounded-md hover:bg-blue-600 disabled:bg-opacity-50"
+        >
+          refresh
+        </button>
         <div data-posts-target="container" class="flex flex-col gap-2"></div>
       </div>
 
