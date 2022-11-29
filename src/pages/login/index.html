@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FIME POSTS INICIO</title>
+    <title>index.html</title>
     <script
       src="https://kit.fontawesome.com/5b306d8e74.js"
       crossorigin="anonymous"
@@ -16,19 +16,23 @@
         class="border-gray-200 border rounded-md p-10"
         data-controller="form"
         data-form-url-value="/auth/login.php"
-        data-form-redirect-value="home.html"
+        data-form-redirect-value="home"
+        login
       >
+        <h1 class="text-2xl text-center mb-4 font-bold text-white">
+          Inicio de sesión
+        </h1>
         <div class="mb-6">
           <label
             for="username"
             class="block mb-2 text-sm font-medium text-gray-300"
-            >Your username</label
+            >Usuario</label
           >
           <input
             type="text"
             id="username"
             name="username"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="name@flowbite.com"
             required
           />
@@ -37,28 +41,35 @@
           <label
             for="password"
             class="block mb-2 text-sm font-medium text-gray-300"
-            >Your password</label
+            >Contraseña</label
           >
           <input
             type="password"
             id="password"
             name="password"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
           />
         </div>
         <p class="text-red-500 form-error hidden" data-form-target="error"></p>
+
+        <a
+          href="/pages/signup/"
+          class="text-blue-300 hover:underline my-2 text-sm"
+          >No tienes una cuenta? Crea una.</a
+        >
+        <br />
 
         <button
           type="submit"
           data-form-target="button"
           class="text-white mt-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Submit
+          Aceptar
         </button>
       </form>
       <div id="posts-container"></div>
     </div>
-    <script type="module" src="src/js/main.js"></script>
+    <script type="module" src="../../js/main.js"></script>
   </body>
 </html>

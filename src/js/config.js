@@ -1,4 +1,5 @@
-export const BASE_URL = 'http://localhost/proweb-pia'
+export const BASE_URL = import.meta.env.VITE_API_URL
+
 export const LOADER = `
 <svg
 class="ring"

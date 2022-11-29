@@ -28,21 +28,23 @@ export default class extends Controller {
     if (posts?.length > 0) {
       $posts.innerHTML = ''
       posts.forEach((post) => {
-        const showActions = post.created_by === '1'
+        const showActions =
+          post.created_by ===
+          JSON.parse(window.localStorage.getItem('fime_posts_user')).id
 
         $posts.innerHTML =
           $posts.innerHTML +
           `
-          <div class='border p-4 w-full flex flex-col gap-2'>
+          <div class='border-t border-gray-50 p-4 w-full flex flex-col gap-2 post'>
             ${
               showActions
-                ? '<button class="bg-red-500 rounded-md py-2 px-4" data-controller-id>Delete</button>'
+                ? '<button class="bg-red-500 rounded-md w-min flex items-center px-3 text-xs py-1 self-end gap-2 hover:bg-red-600" id="delete-button">Delete <i class="fa-solid fa-trash"></i></button>'
                 : ''
             }
-            <div class='flex gap-2 items-center'>
+            <div class='flex gap-4 items-center'>
               <img src='${
                 post.author.avatar_url
-              }' class='w-8 h-8 rounded-full' alt="" />
+              }' class='w-12 h-12 rounded-full' alt="" />
 
               <div class='flex gap-2'>
                 <p class='font-bold mt-0'>${post.author.username}</p>
@@ -53,23 +55,25 @@ export default class extends Controller {
               </div>
             </div>
 
-            <p class='text-red-500'>${post.body}</p>
-
-            <div class='mt-4 flex justify-around'>
-              <button class='bg-red-500 px-2'>like</button>
+            <p>${post.body}</p>
+            <!--
+            <div class='flex justify-around'>
+              <button type='button' class='flex gap-0 items-center'>
+                <div class="heart" id='like-button'></div>
+                <p class='opacity-60 text-sm' id='likes-count'>1</p>
+              </button>
               <button class='bg-red-500 px-2'>comment</button>
-              
             </div>
-
+            -->
          </div>
         `
 
-        $posts.querySelectorAll('div').forEach((div, i) => {
-          const eraseButton = div.querySelector('button')
-          console.log({ $posts })
+        $posts.querySelectorAll('.post').forEach((div, i) => {
+          const eraseButton = div.querySelector('#delete-button')
+
+          if (!eraseButton) return
 
           eraseButton?.addEventListener('click', async () => {
-            console.log({ posts, i })
             await axios.delete(`${BASE_URL}/posts/index.php?id=${posts[i].id}`)
             this.refresh()
           })

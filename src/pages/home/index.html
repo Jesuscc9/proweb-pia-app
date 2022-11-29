@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home.html</title>
+    <script
+      src="https://kit.fontawesome.com/5b306d8e74.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav
+      id="navbar"
+      class="bg-gray-700 text-white w-screen items-center flex justify-between p-6 px-10"
+    >
+      <div>
+        <p>Fime Posts</p>
+      </div>
+      <div class="flex gap-2 items-center">
+        <button
+          type="button"
+          id="logout-button"
+          title="Cerrar sesion"
+          class="bg-red-500 mr-10 px-4 py-2 rounded-md hover:bg-red-600 text-sm"
+        >
+          Cerrar sesión
+        </button>
+        <p id="username"></p>
+        <img
+          src=""
+          class="w-10 h-10 bg-gray-500 rounded-full outline-none border-0 avatar"
+          alt=""
+        />
+      </div>
+    </nav>
+    <div class="flex flex-col w-full items-center justify-center">
+      <div
+        class="border border-t-0 border-gray-50 border-border text-white flex flex-col gap-2"
+        style="width: 500px"
+        data-controller="posts"
+        id="posts"
+      >
+        <button
+          title="refrescar posts"
+          id="refresh"
+          data-action="click->posts#refresh"
+          data-posts-target="refreshButton"
+          class="bg-blue-500 w-10 h-10 py-2 px-2 self-end rounded-full hover:bg-blue-600 disabled:bg-opacity-50 mr-2 my-6"
+        >
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+        <div data-posts-target="container" class="flex flex-col gap-2"></div>
+      </div>
+      <div class="fixed right-10 bottom-10">
+        <button
+          title="Nuevo tuit"
+          type="button"
+          id="new-post-btn"
+          class="rounded-full bg-blue-500 hover:bg-blue-600 px-8 py-4"
+        >
+          <p class="font-bold text-lg text-white">Nuevo post</p>
+        </button>
+      </div>
+      <div id="post-form" class="hidden">
+        <div
+          id="overlay"
+          class="fixed w-screen h-screen z-10 left-0 top-0"
+          style="background-color: rgba(91, 112, 131, 0.4)"
+        ></div>
+        <div
+          class="z-20 p-10 fixed right-1/2 transform translate-x-1/2 top-40 bg-gray-800 rounded-2xl"
+        >
+          <form
+            data-controller="form"
+            data-form-url-value="/posts/index.php"
+            data-form-renderer-value="#posts"
+            class="flex gap-4"
+          >
+            <img
+              class="avatar w-14 h-14 bg-gray-500 rounded-full outline-none border-0"
+              alt=""
+            />
+            <div class="flex flex-col w-full">
+              <textarea
+                type="text"
+                title="post title"
+                name="body"
+                autofocus
+                class="p-4 rounded-md text-xl h-40 bg-gray-800 text-white"
+                placeholder="Que esta pasando?"
+              ></textarea>
+              <input type="hidden" value="1" name="created_by" />
+              <p class="text-red-500 hidden" data-form-target="error"></p>
+              <button
+                data-form-target="button"
+                type="submit"
+                class="bg-blue-500 text-white w-min whitespace-nowrap px-4 py-2 rounded-full self-end mt-10 font-bold"
+              >
+                Publicar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="../../js/main.js"></script>
+  </body>
+</html>
