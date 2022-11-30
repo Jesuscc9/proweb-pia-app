@@ -46,6 +46,7 @@ export default class extends Controller {
             window.localStorage.getItem('fime_posts_user')
           )
 
+          values.created_at = new Date()
           values.created_by = account.id
         }
 
