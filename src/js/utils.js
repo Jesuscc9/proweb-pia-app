@@ -1,4 +1,4 @@
 export const redirect = (page) => {
-  const newUrl = window.location.origin + '/src/pages/' + page + '/index.html'
+  const newUrl = window.location.origin + '/pages/' + page + '/'
   window.location.href = newUrl
 }
